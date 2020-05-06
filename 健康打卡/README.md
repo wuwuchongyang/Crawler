@@ -1,5 +1,7 @@
 #### CDUT健康打卡自动化脚本使用指南
 
+程序执行异常会执行相关邮件或微信推送，若执行正常，则不会推送。
+
 #### 环境要求：
 
 系统：Windows 10
@@ -22,20 +24,22 @@ Python版本：3.6+
    
 3. 在**data.yml**文件中按照示例填上你的个人信息，注意用单引号框起来你的值（你也可以填多个人的信息，将会按填写顺序执行打卡)
 
-4. 打开CDUT.py文件，将第9行括号内的路径改为你的**data.yml**文件存放路径
+4. 在**Message**文件中选择你想要的推送方式，**ft.py**为微信推送（需填写SCKEY，已在文件中注明获取方法），**CdutEmail.py**为邮件推送（需填写收件人地址，已在文件中注明填写位置）。
+
+5. 打开CDUT.py文件，将第9行括号内的路径改为你的**data.yml**文件存放路径
 
    ```python
    with open(r'D:\python3\健康打卡\data.yml', encoding='utf-8')as fp_stream:
    ```
-   
+
    在第25，26行，如果用Microsoft Edge就将另一个注释掉。反之，亦然。
-   
+
    ```python
    self.driver = webdriver.Chrome('F:\Chrome Driver\chromedriver_win32\chromedriver.exe')  # 括号内为你的Chromedriver存放路径
    self.driver = webdriver.Edge('F:\Edge Driver\edgedriver_win64\msedgedriver.exe')       # 括号内为你的MicrosoftEdge driver存放路径
    ```
-   
-5. 如果以上以上工作你都顺利完成，那么你可以运行一遍，测试是否通过。
+
+6. 如果以上以上工作你都顺利完成，那么你可以运行一遍，测试是否通过。
 
    如果没有通过那么请仔细核对上述工作是否全部完成、若还是不能请给予我反馈。
 
