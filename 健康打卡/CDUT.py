@@ -38,7 +38,7 @@ class CdutHealth(unittest.TestCase):
         driver.find_element_by_class_name('dl-button').click()
         time.sleep(3)
         try:
-            driver.find_element_by_class_name('ampHeaderSearchFlag1').click()
+            driver.find_element_by_class_name('ampHeaderSearchFlag').click()
             element = driver.find_element_by_id('ampServiceSearchInput')
             element.clear()
             element.send_keys("学生健康状况信息采集系统")
