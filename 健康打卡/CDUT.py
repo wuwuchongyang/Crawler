@@ -5,6 +5,10 @@ from .Message import ft, CdutEmail
 import time
 import paramunittest
 import yaml
+import time
+import numpy as np
+import os
+
 
 # 将括号内的地址修改为你的data.yml存放地址
 with open(r'D:\python3\健康打卡\data.yml', encoding='utf-8')as fp_stream:
@@ -82,6 +86,7 @@ class CdutHealth(unittest.TestCase):
             element = driver.find_element_by_id('mini-17')  # 寻找弹出页面框的确认按钮
             element.click()
             print('Another test')
+            
 
         except Exception as e:
             if self.messageType == 1:
@@ -94,4 +99,13 @@ class CdutHealth(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main(verbosity=2)
+    if not os.path.exists("time.npy"):
+        np.save("time.npy", "2000-01-01")
+    time_data = np.load("time.npy")
+    now_time = time.strftime('%Y-%m-%d',time.localtime(time.time()))
+    if time_data != now_time:
+        unittest.main(verbosity=2)
+        np.save("time.npy", now_time)
+        print("最新运行时间为"+now_time)
+    else:
+        print("今天已运行")
